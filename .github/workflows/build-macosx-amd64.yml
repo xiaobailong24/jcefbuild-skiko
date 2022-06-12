@@ -54,11 +54,11 @@ jobs:
         run: |
           chmod +x compile_macosx.sh
           ./compile_macosx.sh amd64 Release ${{ github.event.inputs.repo }} ${{ github.event.inputs.ref }} "${{ secrets.APPLE_BUILD_CERTIFICATE_NAME }}" ${{ secrets.APPLE_TEAM_NAME }} ${{ secrets.APPLE_API_KEY_NAME }} ${{ secrets.APPLE_API_KEY_ISSUER }}
-      - name: Clean up keychain
-        if: ${{ always() }}
-        run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm -rf "${HOME}/private_keys"
+      # - name: Clean up keychain
+      #   if: ${{ always() }}
+      #   run: |
+      #     # security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+      #     rm -rf "${HOME}/private_keys"
       -
         name: Export artifacts
         uses: actions/upload-artifact@v2
